@@ -1,0 +1,2 @@
+b.47.1.2;Eukaryotic proteases
+c.37.1.20;Extended AAA-ATPase domain
