@@ -4116,9 +4116,22 @@ int main (int   argc,
             for (unsigned int i = 0; i < length; i++) {
                 degree_sum += degrees[i];
             }
-            // all internal vertices on the rightmost path are using two edges already
-            // the two terminal vertices only one
-            degree_sum = degree_sum - 2 * length + 2;
+
+            // All internal vertices on the rightmost path are using two edges already
+            // the two terminal vertices only one.
+            unsigned int rightmost_path_edges = 2 * (length - 1);
+
+            // On disconnected graphs with multiple connected components, the maximum
+            // lenght for the rightmost path does not cover all vertices. In these
+            // cases the maximum extensions for this graph at a length for the rightmost
+            // path that is longer than its largest connected component is 0.
+            if (degree_sum < rightmost_path_edges) {
+                degree_sum = 0;
+            }
+            else {
+                degree_sum -= rightmost_path_edges;
+            }
+
             if (degree_sum > max_extensions_for_length[length]) {
                 max_extensions_for_length[length] = degree_sum;
             }
