@@ -499,31 +499,31 @@ static inline uint32_t dfs_code_hash (dfs_code_t   *code,
     for (unsigned int i = 0; i < length; i++) {
         hash += code[i].from;
         hash += (hash << 10);
-        hash ^= (hash << 6);
+        hash ^= (hash >> 6);
 
         hash += code[i].from_label;
         hash += (hash << 10);
-        hash ^= (hash << 6);
+        hash ^= (hash >> 6);
 
         hash += code[i].to;
         hash += (hash << 10);
-        hash ^= (hash << 6);
+        hash ^= (hash >> 6);
 
         hash += code[i].to_label;
         hash += (hash << 10);
-        hash ^= (hash << 6);
+        hash ^= (hash >> 6);
 
         hash += code[i].edge_label.interaction_type;
         hash += (hash << 10);
-        hash ^= (hash << 6);
+        hash ^= (hash >> 6);
 
         hash += code[i].edge_label.distance;
         hash += (hash << 10);
-        hash ^= (hash << 6);
+        hash ^= (hash >> 6);
 
         hash += code[i].direction;
         hash += (hash << 10);
-        hash ^= (hash << 6);
+        hash ^= (hash >> 6);
     }
 
     hash += (hash << 3);
